@@ -26,12 +26,11 @@ async function runCallCenter(meanArrival, numAgents) {
 
     let totalCustomers = 0;
     let rejectedCustomers = 0;
-    let currentlyWaiting = 0; // manual counter for waiting customers
+    let currentlyWaiting = 0; 
 
     async function customer(id) {
         totalCustomers++;
 
-        // Check queue manually with our own counter
         if (currentlyWaiting >= MAX_QUEUE) {
             rejectedCustomers++;
             return;
@@ -70,10 +69,10 @@ async function runCallCenter(meanArrival, numAgents) {
 
 async function main() {
     console.log("=".repeat(60));
-    console.log("       CALL CENTER SIMULATION");
+    console.log("          CALL CENTER SIMULATION");
     console.log("=".repeat(60));
 
-    // Ankunftsrate 100s
+    // Ankunftsrate - 100s
     console.log("\nBasisszenario (mittlere Ankunftsrate = 100s)");
     console.log(`Simulationszeit: ${SIM_TIME}s | Max. Warteschlange: ${MAX_QUEUE}`);
     console.log(`Bearbeitungszeit: Normal(${MEAN_SERVICE}s, ${STD_SERVICE}s)\n`);
@@ -81,7 +80,7 @@ async function main() {
     let optimalAgentsBase = null;
     for (let n = 1; n <= 10; n++) {
         const result = await runCallCenter(100, n);
-        const status = result.rejectionRate < 5 ? "✓ OK (< 5%)" : "✗ zu hoch";
+        const status = result.rejectionRate < 5 ? "OK (< 5%)" : "zu hoch";
         console.log(
             `Agenten: ${n.toString().padStart(2)} | ` +
             `Kunden: ${result.totalCustomers.toString().padStart(5)} | ` +
