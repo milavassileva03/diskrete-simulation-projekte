@@ -25,7 +25,7 @@ def simuliere_jahr(basis_kunden, preis, herstellung, fixkosten, n_sim=500):
                 faktor = math.exp(-0.07 * max(t, -10))  # Връща по-голямото от двете числа.
                 kunden = max(0, int(random.gauss(basis_kunden * faktor, 3)))  # няма отрицателен брой клиенти
                 for _ in range(kunden):
-                    becher = max(1, round(random.gauss(1.3, 0.5)))
+                    becher = random.choices([1, 2, 3], weights=[0.5, 0.35, 0.15])[0]
                     monatsgewinn += becher * preis - becher * herstellung
                 monatsgewinn -= fixkosten
             jahresgewinn += monatsgewinn
@@ -78,7 +78,7 @@ def zeige_diagramme(gewinne, mon_mittel, basis_kunden):
                 faktor = math.exp(-0.07 * max(t, -10))
                 k = max(0, int(random.gauss(basis_kunden * faktor, 3)))
                 for _ in range(k):
-                    b = max(1, round(random.gauss(1.3, 0.5)))
+                    b = random.choices([1, 2, 3], weights=[0.5, 0.35, 0.15])[0]
                     mg += b * p - b * h
                 mg -= f
             total += mg
